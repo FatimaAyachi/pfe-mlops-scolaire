@@ -7,3 +7,9 @@ seaborn
 fastapi
 uvicorn
 streamlit
+fastapi
+uvicorn
+pydantic
+requests
+pandas
+joblib
