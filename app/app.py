@@ -38,7 +38,7 @@ load_css()
 # API URL
 # =========================================================
 
-api_url = "http://127.0.0.1:8080/predict"
+api_url = "https://tima456tz-student-api.hf.space/predict"
 
 # =========================================================
 # SESSION STATE
@@ -64,7 +64,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-if st.button("✅ Commencer l'analyse"):
+if st.button(" Commencer l'analyse"):
     st.session_state.show_form = True
 
 # =========================================================
@@ -227,7 +227,7 @@ if st.session_state.show_form:
     # BOUTON
     # =========================================================
 
-    predict_btn = st.button("🚀 Envoyer Prediction")
+    predict_btn = st.button(" Envoyer Prediction")
 
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -309,26 +309,26 @@ if st.session_state.show_form:
                         st.markdown("""
                         <div class="big-result-card">
 
-                            <div class="result-text">
+                        <div class="result-text">
                                 📈 Rapport d'Evaluation Academique
-                            </div>
+                        </div>
 
-                            <div class="result-sub">
+                        <div class="result-sub">
                                 Prediction automatique basee sur les habitudes
                                 et performances scolaires
 
-                                <br><br>
+                        <br><br>
 
-                                ✅ Verifiez bien que les informations saisies
+                        ✅ Verifiez bien que les informations saisies
                                 dans la section
-                                <strong>📂 Profil Académique</strong>
+                        <strong>📂 Profil Académique</strong>
                                 sont correctes.
 
-                                <br><br>
+                        <br><br>
 
-                                💡 Consultez egalement la sidebar pour voir
+                        💡 Consultez egalement la sidebar pour voir
                                 les recommandations et conseils personnalises.
-                            </div>
+                        </div>
                         """, unsafe_allow_html=True)
 
                         if result == 1:
@@ -437,7 +437,7 @@ if st.session_state.show_form:
                             higher,
                             internet,
                             travel_value,
-                            0
+                            result
                         )
 
                         create_sidebar(

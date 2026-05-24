@@ -32,45 +32,55 @@ def create_student_cards(age, sex, studytime, absences, failures, Medu, Fedu, hi
     """
     st.markdown(cartes_html, unsafe_allow_html=True)
 
-def generate_recommendations(Walc_value, absences, failures, study_value, goout_value, freetime_value, health_value, famrel_value, higher, internet, travel_value, success_score):
-    """Génère des recommandations personnalisées"""
+def generate_recommendations(Walc_value, absences, failures, study_value, goout_value, freetime_value, health_value, famrel_value, higher, internet, travel_value, api_result):
+    """Génère des recommandations personnalisées basées sur les données et le résultat de l'API"""
     recommendations = []
     
+    # 🍷 Alcool
     if Walc_value >= 4:
         recommendations.append({"title": "🍷 Réduire l'alcool", "advice": "L'alcool affecte votre concentration et vos performances.", "action": "Objectif : Max 2 consommations/semaine", "priority": "high"})
     elif Walc_value == 3:
         recommendations.append({"title": "🍷 Modérer l'alcool", "advice": "Évitez l'alcool avant les examens.", "action": "Conseil : Restez vigilant", "priority": "medium"})
     
+    # 🏃 Absences
     if absences > 20:
         recommendations.append({"title": "🏃 Réduire les absences", "advice": "Votre présence en cours est essentielle.", "action": "Objectif : Réduire de 50%", "priority": "high"})
     elif absences > 10:
         recommendations.append({"title": "🏃 Améliorer l'assiduité", "advice": "Identifiez les raisons de vos absences.", "action": "Parlez à un conseiller", "priority": "medium"})
     
+    # 📚 Échecs (Failures)
     if failures >= 3:
         recommendations.append({"title": "📚 Soutien académique", "advice": "Vous avez besoin d'aide pour réussir.", "action": "Demandez du tutorat", "priority": "high"})
     elif failures >= 1:
         recommendations.append({"title": "📚 Prévention", "advice": "Analysez vos échecs passés.", "action": "Identifiez vos difficultés", "priority": "medium"})
     
+    # ⏱️ Temps d'étude
     if study_value <= 2:
         recommendations.append({"title": "⏱️ Augmenter l'étude", "advice": "Plus d'étude = meilleures notes.", "action": "Visez 10-15h/semaine", "priority": "high"})
     
+    # 🎉 Sorties
     if goout_value >= 4:
         recommendations.append({"title": "🎉 Équilibrer vie sociale", "advice": "Trop de sorties nuit aux études.", "action": "Limitez aux week-ends", "priority": "medium"})
     
+    # 💪 Santé
     if health_value <= 2:
         recommendations.append({"title": "💪 Santé d'abord", "advice": "Votre santé affecte vos études.", "action": "Consultez un médecin", "priority": "high"})
     
+    # ❤️ Famille
     if famrel_value <= 2:
         recommendations.append({"title": "❤️ Relations familiales", "advice": "Un bon environnement familial aide à réussir.", "action": "Parlez-en à un conseiller", "priority": "medium"})
     
+    # 🌐 Internet
     if internet == "Non":
         recommendations.append({"title": "🌐 Accès internet", "advice": "Internet est essentiel pour les études.", "action": "Utilisez la bibliothèque", "priority": "medium"})
     
+    # 🚗 Temps de trajet
     if travel_value >= 3:
         recommendations.append({"title": "🚗 Optimiser le trajet", "advice": "Utilisez votre temps de transport.", "action": "Écoutez des podcasts éducatifs", "priority": "low"})
     
-    if success_score < 50:
-        recommendations.append({"title": "⚠️ Risque élevé", "advice": "Agissez rapidement pour améliorer votre situation.", "action": "Consultez un conseiller pédagogique", "priority": "critical"})
+    # ⚠️ Alerte Critique basée sur l'API (Si l'API prédit 0 = Risque d'échec)
+    if api_result == 0:
+        recommendations.append({"title": "⚠️ Risque élevé", "advice": "Le modèle anticipe des difficultés. Agissez rapidement pour inverser la tendance.", "action": "Consultez un conseiller pédagogique", "priority": "critical"})
     
     return recommendations
 
