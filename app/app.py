@@ -1,5 +1,3 @@
-# app.py
-
 import streamlit as st
 import requests
 
@@ -10,17 +8,13 @@ from utils import (
     create_sidebar,
     check_missing_fields,
     convert_form_data,
-    EDUCATION_LEVELS,
-    STUDY_LEVELS,
-    TRAVEL_LEVELS,
-    LEVEL_5,
-    HEALTH_MAP,
-    FAMREL_MAP
+    edUcaTiON_LeVeLS,
+    STUdY_LeVeLS,
+    TRaVeL_LeVeLS,
+    LeVeL_5,
+    HeaLTH_MaP,
+    faMReL_MaP
 )
-
-# =========================================================
-# CONFIGURATION PAGE
-# =========================================================
 
 st.set_page_config(
     page_title="Student Performance Prediction",
@@ -28,94 +22,61 @@ st.set_page_config(
     layout="wide"
 )
 
-# =========================================================
-# CHARGEMENT DES STYLES
-# =========================================================
-
 load_css()
 
-# =========================================================
-# API URL
-# =========================================================
-
 api_url = "https://tima456tz-student-api.hf.space/predict"
-
-# =========================================================
-# SESSION STATE
-# =========================================================
 
 if "show_form" not in st.session_state:
     st.session_state.show_form = False
 
-# =========================================================
-# CARD INTRODUCTION
-# =========================================================
-
 st.markdown("""
 <div class="welcome-card">
-<h2>🎓 Student Performance Prediction</h2>
+<h2>🎓 Student Performance Prediction </h2>
 <p>
-        Cette plateforme utilise l'intelligence artificielle
-        pour analyser les facteurs de réussite scolaire
-        des étudiants.
+        cette plateforme utilise l'intelligence artificielle  pour analyser les facteurs de réussite scolaires des étudiants 
+
 </p>
-<p>Remplissez le formulaire pour obtenir une prédiction et des recommandations personnalisées.</p>
+<p> Remplissez le formulaire  pour obtenir une prédiction et des recommandations personnalisées 
+</p>
 
 </div>
 """, unsafe_allow_html=True)
 
-if st.button(" Commencer l'analyse"):
+if st.button(" commencer l'analyse"):
     st.session_state.show_form = True
-
-# =========================================================
-# AFFICHAGE FORMULAIRE
-# =========================================================
 
 if st.session_state.show_form:
 
-    # =========================================================
-    # HEADER
-    # =========================================================
-
     st.markdown(
-        '<div class="main-title">🎓 Academic Performance Predictor</div>',
+        '<div class="main-title">🎓 academic Performance Predictor</div>',
         unsafe_allow_html=True
     )
 
     st.markdown('<div class="form-container">', unsafe_allow_html=True)
 
-    # =========================================================
-    # SECTION INFORMATIONS GENERALES
-    # =========================================================
-
     st.markdown(
-        '<div class="section-title">📌 Informations Generales</div>',
+        '<div class="section-title">📌 informations Generales</div>',
         unsafe_allow_html=True
     )
 
     col1, col2 = st.columns(2)
-
     with col1:
         age = st.number_input(
-            "📅 Age",
+            "📅 age",
             min_value=15,
             max_value=22,
             value=None,
-            placeholder="Entrer l'âge"
+            placeholder="entre l'age"
         )
 
     with col2:
         sex = st.selectbox(
             "👤 Genre",
-            options=["", "Femme", "Homme"]
+            options=["", "femme", "Homme"]
         )
-
-    # =========================================================
-    # SECTION EDUCATION
-    # =========================================================
-
+        
     st.markdown(
-        '<div class="section-title">📚 Education & Etudes</div>',
+        '<div class="section-title">📚 education & etudes</div>',
         unsafe_allow_html=True
     )
 
@@ -124,13 +85,13 @@ if st.session_state.show_form:
     with col1:
 
         Medu = st.selectbox(
-            "👩‍🎓 Education de la mere",
-            options=list(EDUCATION_LEVELS.keys())
+            "👩‍🎓 Éducation de la mère",
+            options=list(edUcaTiON_LeVeLS.keys())
         )
 
         studytime = st.selectbox(
-            "⏱️ Temps d'etude",
-            options=list(STUDY_LEVELS.keys())
+            "⏱️ emps d'études",
+            options=list(STUdY_LeVeLS.keys())
         )
 
         absences = st.number_input(
@@ -142,29 +103,25 @@ if st.session_state.show_form:
 
     with col2:
 
-        Fedu = st.selectbox(
-            "👨‍🎓 Education du pere",
-            options=list(EDUCATION_LEVELS.keys())
+        fedu = st.selectbox(
+            "👨‍🎓 ducation du  père",
+            options=list(edUcaTiON_LeVeLS.keys())
         )
 
         failures = st.number_input(
-            "❌ Nombre d'echecs",
+            "❌ Nombre d'échec ",
             min_value=0,
             max_value=10,
             value=None
         )
 
         higher = st.selectbox(
-            "🎯 Etudes superieures",
+            "🎯 Études supérieures",
             options=["", "Oui", "Non"]
         )
 
-    # =========================================================
-    # SECTION VIE PERSONNELLE
-    # =========================================================
-
     st.markdown(
-        '<div class="section-title">🏠 Vie Personnelle</div>',
+        '<div class="section-title">🏠Vie personnelle</div>',
         unsafe_allow_html=True
     )
 
@@ -173,22 +130,22 @@ if st.session_state.show_form:
     with col1:
 
         traveltime = st.selectbox(
-            "🚗 Temps trajet",
-            options=list(TRAVEL_LEVELS.keys())
+            "🚗 emps trajet",
+            options=list(TRaVeL_LeVeLS.keys())
         )
 
         Walc = st.selectbox(
-            "🍷 Consommation alcool weekend",
-            options=list(LEVEL_5.keys())
+            "🍷 consommation alcool weekend",
+            options=list(LeVeL_5.keys())
         )
 
         freetime = st.selectbox(
             "🎮 Temps libre",
-            options=list(LEVEL_5.keys())
+            options=list(LeVeL_5.keys())
         )
 
         internet = st.selectbox(
-            "🌐 Internet maison",
+            "🌐 internet maison",
             options=["", "Oui", "Non"]
         )
 
@@ -196,87 +153,73 @@ if st.session_state.show_form:
 
         goout = st.selectbox(
             "🎉 Sorties avec amis",
-            options=list(LEVEL_5.keys())
+            options=list(LeVeL_5.keys())
         )
 
         health = st.selectbox(
-            "💪 Etat de sante",
+            "💪 etat de sante",
             options=[
                 "",
                 "Tres mauvais",
                 "Mauvais",
                 "Moyen",
-                "Bon",
-                "Excellent"
+                "bon",
+                "excellent"
             ]
         )
 
         famrel = st.selectbox(
-            "❤️ Relations familiales",
+            "❤️ Relation familiale",
             options=[
                 "",
                 "Tres mauvaise",
                 "Mauvaise",
                 "Moyenne",
-                "Bonne",
-                "Excellente"
+                "bonne",
+                "excellente"
             ]
         )
 
-    # =========================================================
-    # BOUTON
-    # =========================================================
-
-    predict_btn = st.button(" Envoyer Prediction")
+    predict_btn = st.button(" envoyer Prediction")
 
     st.markdown("</div>", unsafe_allow_html=True)
-
-    # =========================================================
-    # TRAITEMENT PREDICTION
-    # =========================================================
 
     if predict_btn:
 
         fields = {
-            "Age": age,
+            "age": age,
             "Genre": sex,
-            "Education Mere": Medu,
-            "Education Pere": Fedu,
-            "Temps Etude": studytime,
-            "Echecs": failures,
-            "Absences": absences,
-            "Etudes Superieures": higher,
+            "education Mere": Medu,
+            "education Pere": fedu,
+            "Temps etude": studytime,
+            "echecs": failures,
+            "absences": absences,
+            "etudes Superieures": higher,
             "Temps Trajet": traveltime,
             "Sorties": goout,
-            "Alcool": Walc,
+            "alcool": Walc,
             "Sante": health,
             "Temps Libre": freetime,
-            "Relations Familiales": famrel,
-            "Internet": internet
+            "Relations familiales": famrel,
+            "internet": internet
         }
 
         missing_fields = check_missing_fields(fields)
-
         if len(missing_fields) > 0:
 
-            st.error("⚠️ Veuillez remplir tous les champs.")
+            st.error("⚠️ Veuillez remplire tous les champs")
 
             st.warning(
-                "Champs manquants :\n\n- " +
+                "champs manquants :\n\n- " +
                 "\n- ".join(missing_fields)
             )
 
         else:
-
-            # =========================================================
-            # CONVERSION DONNEES
-            # =========================================================
-
             data = convert_form_data(
                 age,
                 sex,
                 Medu,
-                Fedu,
+                fedu,
                 studytime,
                 failures,
                 absences,
@@ -290,7 +233,7 @@ if st.session_state.show_form:
                 internet
             )
 
-            with st.spinner("Analyse des donnees..."):
+            with st.spinner("analyse des donnees....."):
 
                 try:
 
@@ -301,16 +244,11 @@ if st.session_state.show_form:
                         result = response.json()["The result is "]
 
                         st.balloons()
-
-                        # =========================================================
-                        # RESULTATS
-                        # =========================================================
-
                         st.markdown("""
                         <div class="big-result-card">
 
                         <div class="result-text">
-                                📈 Rapport d'Evaluation Academique
+                                📈 Rapport d'evaluation academique
                         </div>
 
                         <div class="result-sub">
@@ -321,12 +259,12 @@ if st.session_state.show_form:
 
                         ✅ Verifiez bien que les informations saisies
                                 dans la section
-                        <strong>📂 Profil Académique</strong>
+                        <strong>📂 Profil académique</strong>
                                 sont correctes.
 
                         <br><br>
 
-                        💡 Consultez egalement la sidebar pour voir
+                        💡 consultez egalement la sidebar pour voir
                                 les recommandations et conseils personnalises.
                         </div>
                         """, unsafe_allow_html=True)
@@ -334,27 +272,23 @@ if st.session_state.show_form:
                         if result == 1:
 
                             st.markdown(
-                                '<div class="result-success">✅ REUSSITE SCOLAIRE</div>',
+                                '<div class="result-success">✅ ReUSSiTe ScolaiRe</div>',
                                 unsafe_allow_html=True
                             )
 
                         else:
 
                             st.markdown(
-                                '<div class="result-fail">❌ RISQUE D\'ECHEC SCOLAIRE</div>',
+                                '<div class="result-fail">❌ RiSQUe d\'ecHec ScolaiRe</div>',
                                 unsafe_allow_html=True
                             )
-
-                        # =========================================================
-                        # PROFIL ACADEMIQUE
-                        # =========================================================
 
                         st.markdown(
                             '<div class="divider"></div>',
                             unsafe_allow_html=True
                         )
 
-                        st.markdown("## 📂 Profil Académique")
+                        st.markdown("## 📂 Profil académique")
 
                         create_student_cards(
                             age,
@@ -363,7 +297,7 @@ if st.session_state.show_form:
                             absences,
                             failures,
                             Medu,
-                            Fedu,
+                            fedu,
                             higher,
                             goout,
                             Walc,
@@ -376,19 +310,15 @@ if st.session_state.show_form:
 
                         st.markdown("</div>", unsafe_allow_html=True)
 
-                        # =========================================================
-                        # RECOMMANDATIONS
-                        # =========================================================
-
                         weak_points = []
 
-                        walc_value = LEVEL_5[Walc]
-                        goout_value = LEVEL_5[goout]
-                        freetime_value = LEVEL_5[freetime]
-                        health_value = HEALTH_MAP[health]
-                        famrel_value = FAMREL_MAP[famrel]
-                        study_value = STUDY_LEVELS[studytime]
-                        travel_value = TRAVEL_LEVELS[traveltime]
+                        walc_value = LeVeL_5[Walc]
+                        goout_value = LeVeL_5[goout]
+                        freetime_value = LeVeL_5[freetime]
+                        health_value = HeaLTH_MaP[health]
+                        famrel_value = faMReL_MaP[famrel]
+                        study_value = STUdY_LeVeLS[studytime]
+                        travel_value = TRaVeL_LeVeLS[traveltime]
 
                         if walc_value >= 4:
                             weak_points.append(
@@ -448,11 +378,11 @@ if st.session_state.show_form:
                     else:
 
                         st.error(
-                            f"Erreur API : {response.status_code}"
+                            f"erreur aPi : {response.status_code}"
                         )
 
                 except Exception as e:
 
                     st.error(
-                        f"Impossible de connecter l'API : {e}"
+                        f"impossible de connecter l'aPi : {e}"
                     )
