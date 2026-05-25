@@ -8,12 +8,12 @@ from utils import (
     create_sidebar,
     check_missing_fields,
     convert_form_data,
-    edUcaTiON_LeVeLS,
-    STUdY_LeVeLS,
-    TRaVeL_LeVeLS,
-    LeVeL_5,
-    HeaLTH_MaP,
-    faMReL_MaP
+    EDUCATION_LEVELS,
+    STUDY_LEVELS,
+    TRAVEL_LEVELS,
+    LEVEL_5,
+    HEALTH_MAP,
+    FAMREL_MAP
 )
 
 st.set_page_config(
@@ -86,12 +86,12 @@ if st.session_state.show_form:
 
         Medu = st.selectbox(
             "👩‍🎓 Éducation de la mère",
-            options=list(edUcaTiON_LeVeLS.keys())
+            options=list(EDUCATION_LEVELS.keys())
         )
 
         studytime = st.selectbox(
             "⏱️ emps d'études",
-            options=list(STUdY_LeVeLS.keys())
+            options=list(STUDY_LEVELS.keys())
         )
 
         absences = st.number_input(
@@ -105,7 +105,7 @@ if st.session_state.show_form:
 
         fedu = st.selectbox(
             "👨‍🎓 ducation du  père",
-            options=list(edUcaTiON_LeVeLS.keys())
+            options=list(EDUCATION_LEVELS.keys())
         )
 
         failures = st.number_input(
@@ -131,17 +131,17 @@ if st.session_state.show_form:
 
         traveltime = st.selectbox(
             "🚗 emps trajet",
-            options=list(TRaVeL_LeVeLS.keys())
+            options=list(TRAVEL_LEVELS.keys())
         )
 
         Walc = st.selectbox(
             "🍷 consommation alcool weekend",
-            options=list(LeVeL_5.keys())
+            options=list(LEVEL_5.keys())
         )
 
         freetime = st.selectbox(
             "🎮 Temps libre",
-            options=list(LeVeL_5.keys())
+            options=list(LEVEL_5.keys())
         )
 
         internet = st.selectbox(
@@ -153,7 +153,7 @@ if st.session_state.show_form:
 
         goout = st.selectbox(
             "🎉 Sorties avec amis",
-            options=list(LeVeL_5.keys())
+            options=list(LEVEL_5.keys())
         )
 
         health = st.selectbox(
@@ -312,13 +312,13 @@ if st.session_state.show_form:
 
                         weak_points = []
 
-                        walc_value = LeVeL_5[Walc]
-                        goout_value = LeVeL_5[goout]
-                        freetime_value = LeVeL_5[freetime]
-                        health_value = HeaLTH_MaP[health]
-                        famrel_value = faMReL_MaP[famrel]
-                        study_value = STUdY_LeVeLS[studytime]
-                        travel_value = TRaVeL_LeVeLS[traveltime]
+                        walc_value = LEVEL_5[Walc]
+                        goout_value = LEVEL_5[goout]
+                        freetime_value = LEVEL_5[freetime]
+                        health_value = HEALTH_MAP[health]
+                        famrel_value = FAMREL_MAP[famrel]
+                        study_value = STUDY_LEVELS[studytime]
+                        travel_value = TRAVEL_LEVELS[traveltime]
 
                         if walc_value >= 4:
                             weak_points.append(
