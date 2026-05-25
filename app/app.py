@@ -72,7 +72,7 @@ if st.session_state.show_form:
     with col2:
         sex = st.selectbox(
             "👤 Genre",
-            options=["", "femme", "Homme"]
+            options=["", "Femme", "Homme"]
         )
         
     st.markdown(
@@ -163,8 +163,8 @@ if st.session_state.show_form:
                 "Tres mauvais",
                 "Mauvais",
                 "Moyen",
-                "bon",
-                "excellent"
+                "Bon",
+                "Excellent"
             ]
         )
 
@@ -175,8 +175,8 @@ if st.session_state.show_form:
                 "Tres mauvaise",
                 "Mauvaise",
                 "Moyenne",
-                "bonne",
-                "excellente"
+                "Bonne",
+                "Excellente"
             ]
         )
 
