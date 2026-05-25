@@ -103,7 +103,7 @@ if st.session_state.show_form:
 
     with col2:
 
-        fedu = st.selectbox(
+        Fedu = st.selectbox(
             "👨‍🎓 ducation du  père",
             options=list(EDUCATION_LEVELS.keys())
         )
@@ -190,7 +190,7 @@ if st.session_state.show_form:
             "age": age,
             "Genre": sex,
             "education Mere": Medu,
-            "education Pere": fedu,
+            "education Pere": Fedu,
             "Temps etude": studytime,
             "echecs": failures,
             "absences": absences,
@@ -219,7 +219,7 @@ if st.session_state.show_form:
                 age,
                 sex,
                 Medu,
-                fedu,
+                Fedu,
                 studytime,
                 failures,
                 absences,
@@ -297,7 +297,7 @@ if st.session_state.show_form:
                             absences,
                             failures,
                             Medu,
-                            fedu,
+                            Fedu,
                             higher,
                             goout,
                             Walc,
