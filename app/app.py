@@ -33,7 +33,7 @@ st.markdown("""
 <div class="welcome-card">
 <h2>🎓 Student Performance Prediction </h2>
 <p>
-        cette plateforme utilise l'intelligence artificielle  pour analyser les facteurs de réussite scolaires des étudiants 
+        Cette plateforme utilise l'intelligence artificielle  pour analyser les facteurs de réussite scolaires des étudiants 
 
 </p>
 <p> Remplissez le formulaire  pour obtenir une prédiction et des recommandations personnalisées 
@@ -42,31 +42,31 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-if st.button(" commencer l'analyse"):
+if st.button(" Commencer votre analyse"):
     st.session_state.show_form = True
 
 if st.session_state.show_form:
 
     st.markdown(
-        '<div class="main-title">🎓 academic Performance Predictor</div>',
+        '<div class="main-title">🎓 Academic Performance Predictor</div>',
         unsafe_allow_html=True
     )
 
     st.markdown('<div class="form-container">', unsafe_allow_html=True)
 
     st.markdown(
-        '<div class="section-title">📌 informations Generales</div>',
+        '<div class="section-title">📌 Les informations Ggénéral</div>',
         unsafe_allow_html=True
     )
 
     col1, col2 = st.columns(2)
     with col1:
         age = st.number_input(
-            "📅 age",
+            "📅 Âge",
             min_value=15,
             max_value=22,
             value=None,
-            placeholder="entre l'age"
+            placeholder="Entre l'âge"
         )
 
     with col2:
@@ -76,7 +76,7 @@ if st.session_state.show_form:
         )
         
     st.markdown(
-        '<div class="section-title">📚 education & etudes</div>',
+        '<div class="section-title">📚 Éducation & Études</div>',
         unsafe_allow_html=True
     )
 
@@ -90,7 +90,7 @@ if st.session_state.show_form:
         )
 
         studytime = st.selectbox(
-            "⏱️ emps d'études",
+            "⏱️ Temps d'études",
             options=list(STUDY_LEVELS.keys())
         )
 
@@ -104,7 +104,7 @@ if st.session_state.show_form:
     with col2:
 
         Fedu = st.selectbox(
-            "👨‍🎓 ducation du  père",
+            "👨‍🎓 Éducation du père",
             options=list(EDUCATION_LEVELS.keys())
         )
 
@@ -130,12 +130,12 @@ if st.session_state.show_form:
     with col1:
 
         traveltime = st.selectbox(
-            "🚗 emps trajet",
+            "🚗 Temps trajet",
             options=list(TRAVEL_LEVELS.keys())
         )
 
         Walc = st.selectbox(
-            "🍷 consommation alcool weekend",
+            "🍷 Consommation alcool weekend",
             options=list(LEVEL_5.keys())
         )
 
@@ -145,19 +145,19 @@ if st.session_state.show_form:
         )
 
         internet = st.selectbox(
-            "🌐 internet maison",
+            "🌐 Internet maison",
             options=["", "Oui", "Non"]
         )
 
     with col2:
 
         goout = st.selectbox(
-            "🎉 Sorties avec amis",
+            "🎉 Sorties avec  les amis",
             options=list(LEVEL_5.keys())
         )
 
         health = st.selectbox(
-            "💪 etat de sante",
+            "💪 L'état de santé",
             options=[
                 "",
                 "Tres mauvais",
@@ -180,28 +180,28 @@ if st.session_state.show_form:
             ]
         )
 
-    predict_btn = st.button(" envoyer Prediction")
+    predict_btn = st.button("Envoyer Prediction")
 
     st.markdown("</div>", unsafe_allow_html=True)
 
     if predict_btn:
 
         fields = {
-            "age": age,
+            "Âge": age,
             "Genre": sex,
-            "education Mere": Medu,
-            "education Pere": Fedu,
+            "Éducation de la mère": Medu,
+            "Éducation du père": Fedu,
             "Temps etude": studytime,
-            "echecs": failures,
-            "absences": absences,
-            "etudes Superieures": higher,
-            "Temps Trajet": traveltime,
-            "Sorties": goout,
-            "alcool": Walc,
-            "Sante": health,
-            "Temps Libre": freetime,
-            "Relations familiales": famrel,
-            "internet": internet
+            "Nombre d'échec": failures,
+            "Nombre d'absences": absences,
+            "Études supérieures": higher,
+            "Temps trajet": traveltime,
+            "Sorties avec les amis": goout,
+            "Consommation alcool weekend": Walc,
+            "L'état de santé": health,
+            "Temps libre": freetime,
+            "Relation familiale": famrel,
+            " Internet maison": internet
         }
 
         missing_fields = check_missing_fields(fields)
@@ -233,7 +233,7 @@ if st.session_state.show_form:
                 internet
             )
 
-            with st.spinner("analyse des donnees....."):
+            with st.spinner("Je suis en train de procéder à l'analyse.....⌛⌛"):
 
                 try:
 
@@ -248,7 +248,7 @@ if st.session_state.show_form:
                         <div class="big-result-card">
 
                         <div class="result-text">
-                                📈 Rapport d'evaluation academique
+                                📈 Rapport d'évaluation academique
                         </div>
 
                         <div class="result-sub">
@@ -264,7 +264,7 @@ if st.session_state.show_form:
 
                         <br><br>
 
-                        💡 consultez egalement la sidebar pour voir
+                        💡 Consultez également la sidebar pour voir
                                 les recommandations et conseils personnalises.
                         </div>
                         """, unsafe_allow_html=True)
@@ -272,14 +272,14 @@ if st.session_state.show_form:
                         if result == 1:
 
                             st.markdown(
-                                '<div class="result-success">✅ ReUSSiTe ScolaiRe</div>',
+                                '<div class="result-success">✅ Reussite Scolaire</div>',
                                 unsafe_allow_html=True
                             )
 
                         else:
 
                             st.markdown(
-                                '<div class="result-fail">❌ RiSQUe d\'ecHec ScolaiRe</div>',
+                                '<div class="result-fail">❌ Risque d\'échec Scolaire</div>',
                                 unsafe_allow_html=True
                             )
 
@@ -322,37 +322,37 @@ if st.session_state.show_form:
 
                         if walc_value >= 4:
                             weak_points.append(
-                                "consommation d'alcool élevée"
+                                "Consommation d'alcool élevée"
                             )
 
                         if absences > 20:
                             weak_points.append(
-                                "absences fréquentes"
+                                "Absences fréquentes"
                             )
 
                         if failures >= 3:
                             weak_points.append(
-                                "antécédents d'échecs"
+                                "Antécédents d'échecs"
                             )
 
                         if study_value <= 2:
                             weak_points.append(
-                                "temps d'étude insuffisant"
+                                "Temps d'étude insuffisant"
                             )
 
                         if goout_value >= 4:
                             weak_points.append(
-                                "sorties trop fréquentes"
+                                "Sorties trop fréquentes"
                             )
 
                         if health_value <= 2:
                             weak_points.append(
-                                "santé fragile"
+                                "Santé fragile"
                             )
 
                         if famrel_value <= 2:
                             weak_points.append(
-                                "relations familiales difficiles"
+                                "Relations familiales difficiles"
                             )
 
                         recommendations = generate_recommendations(
